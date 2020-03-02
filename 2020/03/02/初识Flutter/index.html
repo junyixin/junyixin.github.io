@@ -5,15 +5,15 @@
   
   <title>初识Flutter | junyixin&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Flutter简介Flutter 是 Google 推出并开源的移动应用开发框架，与用于构建移动应用程序的其他大多数框架不同，Flutter 既不使用 WebView，也不使用操作系统的原生控件。相反，Flutter 是使用自己的高性能渲染引擎来绘制 widget。这样不仅可以保证在不同平台上 UI 的一致性，而且也可以避免对原生控件依赖而带来的限制及高昂的维护成本。">
+  <meta name="description" content="Flutter简介Flutter 是 Google 推出并开源的移动应用开发框架，与用于构建移动应用程序的其他大多数框架不同，Flutter 既不使用 WebView，也不使用操作系统的原生控件。相反，Flutter 是使用自己的高性能渲染引擎来绘制 widget。这样不仅可以保证在不同平台上 UI 的一致性，而且也可以避免对原生控件依赖而带来的限制及高昂的维护成本。 使用Dart语言开发在了解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识Flutter">
 <meta property="og:url" content="http://yoursite.com/2020/03/02/%E5%88%9D%E8%AF%86Flutter/index.html">
 <meta property="og:site_name" content="junyixin&#39;s blog">
-<meta property="og:description" content="Flutter简介Flutter 是 Google 推出并开源的移动应用开发框架，与用于构建移动应用程序的其他大多数框架不同，Flutter 既不使用 WebView，也不使用操作系统的原生控件。相反，Flutter 是使用自己的高性能渲染引擎来绘制 widget。这样不仅可以保证在不同平台上 UI 的一致性，而且也可以避免对原生控件依赖而带来的限制及高昂的维护成本。">
+<meta property="og:description" content="Flutter简介Flutter 是 Google 推出并开源的移动应用开发框架，与用于构建移动应用程序的其他大多数框架不同，Flutter 既不使用 WebView，也不使用操作系统的原生控件。相反，Flutter 是使用自己的高性能渲染引擎来绘制 widget。这样不仅可以保证在不同平台上 UI 的一致性，而且也可以避免对原生控件依赖而带来的限制及高昂的维护成本。 使用Dart语言开发在了解">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-02T01:01:29.000Z">
-<meta property="article:modified_time" content="2020-03-02T01:02:22.305Z">
+<meta property="article:published_time" content="2020-03-02T09:11:35.000Z">
+<meta property="article:modified_time" content="2020-03-02T09:12:12.254Z">
 <meta property="article:author" content="junyixin">
 <meta name="twitter:card" content="summary">
   
@@ -106,7 +106,7 @@
         <section id="main"><article id="post-初识Flutter" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/02/%E5%88%9D%E8%AF%86Flutter/" class="article-date">
-  <time datetime="2020-03-02T01:01:29.000Z" itemprop="datePublished">2020-03-02</time>
+  <time datetime="2020-03-02T09:11:35.000Z" itemprop="datePublished">2020-03-02</time>
 </a>
     
   </div>
@@ -126,6 +126,64 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="Flutter简介"><a href="#Flutter简介" class="headerlink" title="Flutter简介"></a>Flutter简介</h2><p>Flutter 是 Google 推出并开源的移动应用开发框架，与用于构建移动应用程序的其他大多数框架不同，Flutter 既不使用 WebView，也不使用操作系统的原生控件。相反，Flutter 是使用自己的高性能渲染引擎来绘制 widget。这样不仅可以保证在不同平台上 UI 的一致性，而且也可以避免对原生控件依赖而带来的限制及高昂的维护成本。</p>
+<h2 id="使用Dart语言开发"><a href="#使用Dart语言开发" class="headerlink" title="使用Dart语言开发"></a>使用Dart语言开发</h2><p>在了解 Flutter 为什会选择 Dart 而不是 JavaScript 之前我们先介绍两个概念：JIT 和 AOT。</p>
+<ul>
+<li><strong>AOT</strong>（Ahead of time）即 “提前编译”，通常是指静态编译的程序在执行前全部被翻译成机器码，典型代表是用 C/C++ 开发的应用。</li>
+<li><strong>JIT</strong>（Just in time）即 “即时编译”，通常是指代码一句一句边翻译边运行，典型代表如 JavaScript、Python等。事实上，所有脚本语言都支持 JIT 模式。</li>
+</ul>
+<p>需要注意的是 JIT 和 AOT 指的是程序运行方式，和编程语言并非是强关联的，有些语言即可以以 JIT 方式运行也可以以 AOT 方式运行，如 Java、Python，它们可以在第一次执行时编译成中间字节码，然后之后执行时可以直接执行字节码。不过字节码并非是机器码，在程序执行时仍需要动态将字节码转为机器码，所以通常我们区分是否属于 AOT 的标准就是看代码在执行前是否需要编译，只要需要编译，无论其编译产物是字节码还是机器码，都是属于 AOT 模式。</p>
+<p>其他大多跨平台框架主要是将 JavaScript 作为其开发语言，因此我们将 Dart 和 JavaScript 做一个对比：</p>
+<ul>
+<li><strong>开发效率</strong>：Flutter 在开发阶段采用 JIT 模式，避免了每次改动都要进行编译，节省了我们的开发时间，在发布时，可以通过 AOT 生成高效的 ARM 代码以保证应用性能，而 JavaScript 则不具有这个能力。</li>
+<li><strong>性能</strong>：Flutter中需要在每个动画帧中运行大量的代码，而 Dart 支持 AOT，能提供更流程、高保帧的 UI 体验，在这一点可以做得比 JavaScript 更好。</li>
+<li><strong>类型安全</strong>：Dart 是类型安全的语言，支持静态类型检测，可以在编译前发现错误并排除潜在问题。而 JavaScript 是一种弱类型语言，相比之下，Dart 本身就支持静态类型，这是它的一个重要优势。</li>
+</ul>
+<p>##Dart 语言简介</p>
+<p>Dart 的设计目标借鉴了很多其他的编程语言，如果有过其他编程语言经验的话会非常容易上手，因此这里只是对于在 Flutter 常用的 Dart 语法进行一些介绍。</p>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><p>创建一个变量并进行初始化：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'Alex'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>变量仅存储对象引用，这里的变量是 <strong>name</strong> 存储了一个 <strong>String</strong> 类型的对象引用，“Alex“ 是这个 <strong>String</strong> 类型对象的值。</p>
+<p><strong>name</strong> 变量的类型被推断为 <strong>String</strong>。不过我们也可以通过指定类型的方式，来改变变量类型。如果对象不限定为单个类型，可以指定为<strong>对象类型</strong>或<strong>动态类型</strong>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指定类型为 String</span></span><br><span class="line"><span class="built_in">String</span> name = <span class="string">'Alex'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象类型</span></span><br><span class="line"><span class="built_in">Object</span> name = <span class="string">'Alex'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动态类型</span></span><br><span class="line"><span class="built_in">dynamic</span> name = <span class="string">'Alex'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>使用过程中从来不会修改的变量，可以使用 <strong>final</strong> 或 <strong>const</strong>，而不是使用 <strong>var</strong>。Final 变量的值只能被设置一次，在第一次使用时被初始化，而Const 变量是一个编译时常量，被 <strong>final</strong> 或者 <strong>const</strong> 修饰的变量，变量类型可以省略。实例变量可以时 <strong>final</strong> 类型但不能是 <strong>const</strong> 类型，并且必须在构造函数体执行之前初始化 <strong>final</strong> 变量。</p>
+<p>创建和设置一个 <strong>final</strong> 变量：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> name = <span class="string">'Alex'</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> nickname = <span class="string">'Alex'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果需要在编译时就固定变量的值，可以使用 <strong>const</strong> 类型变量，如果 <strong>const</strong> 变量是类级别的，需要标记为 <strong>static const</strong>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bar = <span class="number">1000000</span>;  <span class="comment">// 压力单位</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">double</span> atm = <span class="number">1.01325</span> * bar;  <span class="comment">// 标准气压</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>Dart 是一种面向对象的语言，因此函数也是对象，并且有一个类型 <strong>Function</strong>。这意味着函数可以赋值给变量或作为参数传递给其他函数，这是函数式编程的典型特征。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">printInt(<span class="built_in">int</span> aNumber) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">'The number is <span class="subst">$aNumber</span>'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Dart 函数声明如果没有显式声明返回值类型时会默认当作 <strong>dynamic</strong> 处理，需要注意的是，函数返回值没有类型推断：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">bool</span> VALLBACK();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不指定返回类型，此时默认为dynamic，不是bool</span></span><br><span class="line">isNoble(<span class="built_in">int</span> aNumber) &#123;</span><br><span class="line">  <span class="keyword">return</span> _nobleGases[aNumber] != <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> test(CALLBACK callback) &#123;</span><br><span class="line">  <span class="built_in">print</span>(callback());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test(isNoble);  <span class="comment">// 报错，isNoble返回值不是bool类型</span></span><br></pre></td></tr></table></figure>
+
+<p>对于只包含一个表达式的函数，可以使用简写语法</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bool</span> isNoble(<span class="built_in">int</span> aNumber) =&gt; _nobleGases[aNumber] != <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+
+<p>函数作为变量</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> say() = (str) &#123;</span><br><span class="line">  <span class="built_in">print</span>(str);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">say(<span class="string">"Hello World!"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>函数作为参数传递</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> execute(<span class="keyword">var</span> callback) &#123;</span><br><span class="line">  callback();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">execute(() =&gt; <span class="built_in">print</span>(<span class="string">"Hello World!"</span>));</span><br></pre></td></tr></table></figure>
+
+<p>可选的位置参数，使用 [] 标记为可选的位置参数</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> say(<span class="built_in">String</span> from, <span class="built_in">String</span> msg, [<span class="built_in">String</span> device]) &#123;</span><br><span class="line">  <span class="keyword">var</span> result = <span class="string">'<span class="subst">$from</span> says <span class="subst">$msg</span>'</span>;</span><br><span class="line">  <span class="keyword">if</span> (device != <span class="keyword">null</span>) &#123;</span><br><span class="line">    result = <span class="string">'<span class="subst">$result</span> with a <span class="subst">$device</span>'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="async-wait"><a href="#async-wait" class="headerlink" title="async/wait"></a>async/wait</h3><p>Dart 中的 <strong>async/await</strong> 和 JavaScript 中的 <strong>async/await</strong> 功能和用法是一样的。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">task() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="built_in">String</span> id = <span class="keyword">await</span> login(<span class="string">"Alex"</span>, <span class="string">"xxxxxx"</span>);</span><br><span class="line">    <span class="built_in">String</span> userInfo = <span class="keyword">await</span> getUserInfo(id);</span><br><span class="line">    <span class="keyword">await</span> saveUserInfo(userInfo);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 执行接下来的操作</span></span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    <span class="comment">// 错误处理</span></span><br><span class="line">    <span class="built_in">print</span>(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>async</strong> 用来表示函数是异步的，定义的函数会返回一个 <strong>Future</strong> 对象，可以使用 then 方法添加回调函数。</li>
+<li><strong>await</strong> 后面是一个 <strong>Future</strong>，表示等待该异步任务完成，异步任务完成后才会往下走，<strong>await</strong> 必须出现在 <strong>async</strong> 函数内部。</li>
+</ul>
+<p>其实，无论是在 JavaScript 还是Dart 中，async/await 都只是语法糖，编译器或解释器最终都会将其转化为一个 Promise 的调用链。</p>
 
       
     </div>
